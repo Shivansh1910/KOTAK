@@ -2,16 +2,59 @@ from django.contrib import admin
 from django.http import HttpResponse
 import csv
 from . import models
+from import_export.admin import ImportExportModelAdmin
+
 # Register your models here.
 
 
-admin.site.register(models.Employee)
-admin.site.register(models.LD)
-admin.site.register(models.Compensation_and_Benefit)
-admin.site.register(models.Discipline)
-admin.site.register(models.HR_Letter)
-admin.site.register(models.Rating)
-admin.site.register(models.Onboarding_documents)
+class EmployeeAdmin(ImportExportModelAdmin):
+    models = models.Employee
+
+
+admin.site.register(models.Employee, EmployeeAdmin)
+
+
+class LDAdmin(ImportExportModelAdmin):
+    models = models.LD
+
+
+admin.site.register(models.LD, LDAdmin)
+
+
+class Compensation_and_BenefitAdmin(ImportExportModelAdmin):
+    models = models.Compensation_and_Benefit
+
+
+admin.site.register(models.Compensation_and_Benefit,
+                    Compensation_and_BenefitAdmin)
+
+
+class DisciplineAdmin(ImportExportModelAdmin):
+    models = models.Discipline
+
+
+admin.site.register(models.Discipline, DisciplineAdmin)
+
+
+class HR_LetterAdmin(ImportExportModelAdmin):
+    models = models.HR_Letter
+
+
+admin.site.register(models.HR_Letter, HR_LetterAdmin)
+
+
+class RatingAdmin(ImportExportModelAdmin):
+    models = models.Rating
+
+
+admin.site.register(models.Rating, RatingAdmin)
+
+
+class Onboarding_documentsAdmin(ImportExportModelAdmin):
+    models = models.Onboarding_documents
+
+
+admin.site.register(models.Onboarding_documents, Onboarding_documentsAdmin)
 
 
 def export_as_csv(self, request, queryset):
